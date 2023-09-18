@@ -15,7 +15,7 @@ fn main() {
 
 
     App::new()
-        .add_plugins((DefaultPlugins, TrainPlugin))
+        .add_plugins((DefaultPlugins, TrainPlugin, DebugTrain))
         .run();
 
 
