@@ -1,13 +1,12 @@
 use bevy::prelude::*;
+use bevy_rapier2d::prelude::*;
 
-use lib::train_plugin::*;
+use prelude::train_plugin::*;
 
-mod lib;
+use crate::prelude::{camera_plugin::CameraPlugin, train::{create_train, create_train_test, move_train, list_trains}};
 
+mod prelude;
 
-fn hello_game() {
-    println!("Hello, Game!");
-}
 
 
 fn main() {
@@ -15,7 +14,9 @@ fn main() {
 
 
     App::new()
-        .add_plugins((DefaultPlugins, TrainPlugin, DebugTrain))
+        .add_plugins((DefaultPlugins, CameraPlugin, TrainPlugin))
+        .add_systems(Startup, create_train_test)
+        .add_systems(Update, (move_train, list_trains))
         .run();
 
 
