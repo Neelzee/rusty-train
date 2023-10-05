@@ -16,18 +16,6 @@ pub struct Name(String);
 #[derive(Resource)]
 pub struct TrainTimer(pub Timer);
 
-#[derive(Component)]
-pub enum Direction {
-    None,
-    North,
-    South,
-    East,
-    West,
-    NorthEast,
-    NorthWest,
-    SouthEast,
-    SouthWest
-}
 
 pub fn add_trains(mut cmd: Commands) {
     cmd.spawn(
@@ -83,6 +71,19 @@ pub fn find_train_by_id(query: Query<(&Id, &Name), With<Train>>) {
     }
 }
 
+
+#[derive(Component)]
+pub enum Direction {
+    None,
+    North,
+    South,
+    East,
+    West,
+    NorthEast,
+    NorthWest,
+    SouthEast,
+    SouthWest
+}
 
 pub fn list_trains(query: Query<(&Name, &Transform), With<Train>>, time: Res<Time>, mut timer: ResMut<TrainTimer>) {
 
